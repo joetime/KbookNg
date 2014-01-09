@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KBookData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="KBookDataStoreContainer">
+    <EntitySet Name="Artists" EntityType="KBookData.Store.Artists" store:Type="Tables" Schema="kb" />
+    <EntitySet Name="Sets" EntityType="KBookData.Store.Sets" store:Type="Tables" Schema="kb" />
+    <EntitySet Name="Songs" EntityType="KBookData.Store.Songs" store:Type="Tables" Schema="kb" />
+    <AssociationSet Name="FK_Songs_Artists" Association="KBookData.Store.FK_Songs_Artists">
+      <End Role="Artists" EntitySet="Artists" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Artists">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="AltName" Type="nvarchar" MaxLength="250" />
+    <Property Name="DateAdded" Type="date" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Temp" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Sets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="AltName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="DateAdded" Type="date" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Temp" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Songs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArtistId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="AltName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Lyrics" Type="nvarchar(max)" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="IsHidden" Type="bit" Nullable="false" />
+    <Property Name="IsFavorite" Type="bit" Nullable="false" />
+    <Property Name="DateAdded" Type="date" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Temp" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK_Songs_Artists">
+    <End Role="Artists" Type="KBookData.Store.Artists" Multiplicity="1" />
+    <End Role="Songs" Type="KBookData.Store.Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artists">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Songs">
+        <PropertyRef Name="ArtistId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

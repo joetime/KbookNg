@@ -1,0 +1,57 @@
+﻿<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
+
+    <div id="header-row" class="row de-em">
+        <div class="col-xs-4">
+            <h3 ng-click="searchTerm = ''">All Songs</h3>
+        </div>
+        <div class="col-xs-4">
+            <h3>
+                <input class="form-control" ng-model="searchTerm"
+                    placeholder="search" /></h3>
+        </div>
+        <div class="col-xs-3">
+            <h3>
+                <button class="btn btn-default"
+                    ng-click="searchTerm = ''">
+                    Clear</button>
+            </h3>
+        </div>
+        <div class="col-xs-1">
+            <h3>
+                <span class="pull-right" ng-click="favoriteFilter = !favoriteFilter">
+                    <i class="glyphicon glyphicon-heart flag-favorite"
+                        ng-show="favoriteFilter"></i>
+                    <i class="glyphicon glyphicon-heart-empty flag-favorite-false"
+                        ng-show="!favoriteFilter"></i>
+                </span>
+                <!--<span>{{favoriteFilter}}</span>-->
+
+            </h3>
+        </div>
+    </div>
+
+    <div ng-show="!vm.ready" class="one-moment">
+        One Moment...
+    </div>
+
+
+    <div id="songs-row" class="row fade-in" ng-show="vm.ready">
+        <div class="col-xs-6 artist-block" 
+            ng-repeat="artist in vm.artists | noNull | filter: searchTerm | hasFavorite: favoriteFilter | orderBy: 'name'">
+            
+            <h3>{{artist.name}}
+                <a href="#/song/0/{{artist.name}}"
+                    class="btn btn-xs add-song-to-artist-link">
+                    <glyph icon="plus"></glyph>
+                </a></h3>
+            
+            <a ng-repeat="song in artist.songs" class="song-link" 
+                ng-show="!favoriteFilter || song.isFavorite"
+                href="#/song/{{song.id}}">{{song.name}}
+                <span ng-show="song.isFavorite" class="heart-flag">&hearts;</span>
+            </a>
+            
+        </div>
+    </div>
+
+</section>

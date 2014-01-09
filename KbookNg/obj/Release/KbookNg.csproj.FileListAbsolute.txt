@@ -1,0 +1,8 @@
+C:\Users\jscala\documents\visual studio 2012\Projects\KbookNg\KbookNg\bin\KbookNg.dll
+C:\Users\jscala\documents\visual studio 2012\Projects\KbookNg\KbookNg\bin\KbookNg.pdb
+C:\Users\jscala\documents\visual studio 2012\Projects\KbookNg\KbookNg\bin\EntityFramework.dll
+C:\Users\jscala\documents\visual studio 2012\Projects\KbookNg\KbookNg\bin\EntityFramework.xml
+C:\Users\jscala\documents\visual studio 2012\Projects\KbookNg\KbookNg\obj\Release\KbookNg.csprojResolveAssemblyReference.cache
+C:\Users\jscala\documents\visual studio 2012\Projects\KbookNg\KbookNg\obj\Release\KbookNg.dll
+C:\Users\jscala\documents\visual studio 2012\Projects\KbookNg\KbookNg\obj\Release\KbookNg.pdb
+C:\Users\jscala\Documents\Visual Studio 2012\Projects\KbookNg\KbookNg\bin\KbookNg.dll.config

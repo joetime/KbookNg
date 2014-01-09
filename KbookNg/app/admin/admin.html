@@ -1,0 +1,48 @@
+﻿<section class="mainbar" data-ng-controller="admin as vm">
+    
+    <row>
+        <div class="col-sm-12">
+            <h3>Data mode</h3>
+            <button class="btn btn-default" ng-click="vm.readCache()">Cache</button>
+        </div>
+    </row>
+
+    <row>
+        <div class="col-sm-12">
+            <h3>Data mode</h3>
+            current: {{vm.dataMode}}<br />
+            <button class="btn btn-default" ng-click="vm.setRemote()">Remote</button>
+            <button class="btn btn-default" ng-click="vm.setMemory()">Memory</button>
+            <button class="btn btn-default" ng-click="vm.setLocalStorage()">Local Storage</button>
+        </div>
+    </row>
+
+    <row>
+        <div class="col-sm-12">
+            <h3>repository</h3>
+            <table class="table table-striped">
+                <tr ng-repeat="item in vm.repository">
+                    <td>{{item.key}}</td>
+                    <td>{{item.size}}</td>
+                    <td>{{item.data}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </row>
+
+    <row>
+        <div class="col-sm-12">
+            <h3>localStorage</h3>
+            <button class="btn btn-default" ng-click="vm.clearLocalStorage()">Clear localStorage</button>
+            <table class="table table-striped">
+                <tr ng-repeat="item in vm.localStorage">
+                    <td>{{item.key}}</td>
+                    <td>{{item.size}}</td>
+                    <td>{{item.data}}</td>
+                </tr>
+            </table>
+        </div>
+    </row>
+
+</section>

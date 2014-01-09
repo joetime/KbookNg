@@ -1,0 +1,76 @@
+﻿.add-song-to-artist-link {
+    display: none;
+    color: #ddd;
+}
+
+.artist-choice {
+    padding: 2px;
+    cursor: pointer;
+}
+
+.big-back-button {
+    position: absolute;
+    top: -45px;
+    left: -10px;
+    z-index: 100;
+    opacity: .5;
+}
+    .big-back-button:active {
+        opacity: 1.0;
+    }
+    .big-button:active a glyph i {
+        color: #ff6a00;
+    }
+
+.big-button {
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+}
+    .big-button a {
+        color: #eee;
+    }
+    .big-button i {
+        font-size: 150px;
+        display: block;
+    }
+    .big-button .caption{
+        font-size: 30px;
+        color: #eee;
+        display: block;
+    }
+    .big-button a:hover {
+        text-decoration: none;
+        color: #ddd;
+    }
+
+
+
+
+.artist-block h3 {
+    font-family: Georgia;
+    font-size: 30px;
+}
+
+.artist-block .song-link {
+    font-family: Georgia;
+    font-size: 25px;
+    /*margin-right: 10px;*/
+    display: block;
+}
+.song-link:active {
+    color: #ff6a00;
+}
+
+.artist-block {
+    padding-bottom: 30px;
+    padding-left: 40px;
+}
+
+.one-moment {
+    text-align: center;
+    font-size: 30px;
+    color: #ddd;
+    font-family: Georgia;
+    padding: 20px;
+}

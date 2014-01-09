@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KBookData" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KbookEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Artists" EntityType="KBookData.Artist" />
+    <EntitySet Name="Sets" EntityType="KBookData.Set" />
+    <EntitySet Name="Songs" EntityType="KBookData.Song" />
+    <AssociationSet Name="FK_Songs_Artists" Association="KBookData.FK_Songs_Artists">
+      <End Role="Artists" EntitySet="Artists" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Artist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="AltName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Temp" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Songs" Relationship="KBookData.FK_Songs_Artists" FromRole="Artists" ToRole="Songs" />
+  </EntityType>
+  <EntityType Name="Set">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="AltName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Temp" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Song">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ArtistId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="AltName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Lyrics" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Temp" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Artist" Relationship="KBookData.FK_Songs_Artists" FromRole="Songs" ToRole="Artists" />
+    <Property Type="Boolean" Name="IsHidden" Nullable="false" />
+    <Property Type="Boolean" Name="IsFavorite" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Songs_Artists">
+    <End Role="Artists" Type="KBookData.Artist" Multiplicity="1" />
+    <End Role="Songs" Type="KBookData.Song" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artists">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Songs">
+        <PropertyRef Name="ArtistId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

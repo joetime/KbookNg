@@ -1,0 +1,134 @@
+﻿<section data-ng-controller="song as vm">
+    
+    <row id="header-row" class="de-em" ng-show="!vm.editMode">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <big-button class="big-back-button" caption="" icon="circle-arrow-left" href="#"></big-button>
+
+                <span class="pull-right" ng-click="vm.toggleFavorite()">
+                    <glyph icon="heart" class="flag-favorite" ng-show="vm.song.isFavorite"></glyph>
+                    <glyph icon="heart-empty" class="flag-favorite-false" ng-show="!vm.song.isFavorite"></glyph>
+                </span>
+                <h3>{{vm.song.name}}</h3>
+                <h4>{{vm.song.artist.name}}</h4>
+                <div class="notes">
+                    {{vm.song.notes}}
+                </div>
+
+            </div>
+        
+        </div>
+    </row>
+
+    <row id="buttons-row">
+        <div class="col-xs-12 text-right">
+            <button class="btn btn-link"
+                ng-show="!vm.editMode"
+                ng-click="vm.editMode = true">
+                Edit</button>
+            <button class="btn btn-primary"
+                ng-show="vm.editMode"
+                ng-click="vm.saveSong()">
+                Save</button>&nbsp;
+            <button class="btn btn-default"
+                ng-show="vm.editMode"
+                ng-click="vm.cancelEdit()">
+                Cancel</button>
+        </div>
+    </row>
+
+
+    <row id="lyrics-row" ng-show="!vm.editMode">
+        <div class="col-sm-12">
+            
+            
+
+            <div class="lyrics">
+                <pre>{{vm.song.lyrics}}</pre>
+            </div>
+
+            <div class="text-center">
+                <big-button caption="back" icon="circle-arrow-left" href="#"></big-button>
+                <big-button caption="random" icon="registration-mark" href="#/song/{{vm.randomId}}"></big-button>
+            </div>
+        </div>
+    </row>
+
+    <row id="form-row" ng-show="vm.editMode">
+        <div class="col-xs-12">
+            <form class="form">
+
+                <div class="form-group">
+                    <label>Title: </label>
+                    <input id="name-input" type="text"
+                        ng-model="vm.song.name" class="form-control" placeholder="Song Title" required
+                         />
+                </div>
+
+                <div class="form-group">
+                    
+                    <label>Artist:</label>
+                    
+                    <input id="test" ng-model="vm.song.artist.name" 
+                        ng-focus="vm.showme = true"
+                        class="form-control" />
+
+                    <div ng-show="vm.song.artist.name && vm.showme">
+                        <button ng-repeat="artist in vm.artists | filter:vm.song.artist.name" 
+                            class="btn btn-default btn-xs artist-choice"
+                            ng-click="vm.chooseArtist(artist.name)" 
+                            >{{artist.name}}</button>
+                    </div>
+                    
+                </div>
+        
+
+                <div class="form-group">
+                    <label>
+                        Lyrics: <a href="{{'http://www.google.com/search?q=lyrics+' + vm.song.name + '+' + vm.song.artist.name}}"
+                            target="_search">search</a></label>
+                    <textarea id="lyrics-input" class="form-control" ng-model="vm.song.lyrics"
+                        rows="40"></textarea>
+                </div>
+
+                <div class="form-group">
+            <label>Notes: </label>
+            <textarea class="form-control" ng-model="vm.song.notes"
+                rows="4"></textarea>
+        </div>
+
+            </form>
+        </div>
+    </row>
+
+    <div id="buttons-row-2" class="pull-right">
+        <div class="col-xs-12 text-right">
+
+            <button class="btn btn-link"
+                ng-show="!vm.editMode"
+                ng-click="vm.toggleEditMode()">
+                Edit</button>
+            <button class="btn btn-primary"
+                ng-show="vm.editMode"
+                ng-click="vm.saveSong()">
+                Save</button>&nbsp;
+            <button class="btn btn-default"
+                ng-show="vm.editMode"
+                ng-click="vm.cancelEdit()">
+                Cancel</button>
+        </div>
+    </div>
+
+   <!-- <div class=""
+        ng-click="vm.toggleDebugMode()">
+        debug:{{vm.debug}}
+    </div>
+    <div class="">
+        editMode:{{vm.editMode}}
+    </div>
+    <div ng-show="vm.debug">
+        <h3>Song View: {{vm.songId}}</h3>
+        {{vm.song | json}}
+    </div>-->
+
+</section>

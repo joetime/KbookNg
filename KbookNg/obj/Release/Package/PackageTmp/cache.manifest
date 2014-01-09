@@ -1,0 +1,18 @@
+﻿CACHE MANIFEST
+
+# update CatsEye 1.32
+
+/index.html
+/app/directives/big-button.html
+/app/song/song.html
+/app/layout/shell.html
+/app/admin/admin.html
+/app/layout/sidebar.html
+/app/dashboard/dashboard.html
+/app/layout/sidebar.html
+/Scripts/toastr.js
+/Content/toatsr.css
+/Content/links.css
+
+NETWORK:
+*

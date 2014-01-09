@@ -1,0 +1,15 @@
+﻿.flag-favorite {
+    font-size: 40px;
+    color: red;
+}
+.flag-favorite-false {
+    font-size: 40px;
+    color: #ddd;
+    opacity: .75
+}
+
+.heart-flag {
+    color: red;
+    font-size: 15px;
+    margin-left: 10px;
+}

@@ -1,0 +1,21 @@
+﻿.lyrics pre {
+
+    font-family: Georgia, serif;
+    border: none;
+    font-size: 25px;
+    background-color: white;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.de-em {
+    background-color: #f8f8f8;
+}
+
+footer {
+    text-align: center;
+    color: #eee;
+    font-weight: bold;
+    font-family: Georgia, serif;
+    padding-bottom: 10px;
+}

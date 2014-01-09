@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KBookData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="KBookDataStoreContainer">
+          <EntitySet Name="Artists" EntityType="KBookData.Store.Artists" store:Type="Tables" Schema="kb" />
+          <EntitySet Name="Sets" EntityType="KBookData.Store.Sets" store:Type="Tables" Schema="kb" />
+          <EntitySet Name="Songs" EntityType="KBookData.Store.Songs" store:Type="Tables" Schema="kb" />
+          <AssociationSet Name="FK_Songs_Artists" Association="KBookData.Store.FK_Songs_Artists">
+            <End Role="Artists" EntitySet="Artists" />
+            <End Role="Songs" EntitySet="Songs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Artists">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="AltName" Type="nvarchar" MaxLength="250" />
+          <Property Name="DateAdded" Type="date" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Temp" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Sets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="AltName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="DateAdded" Type="date" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Temp" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Songs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArtistId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="AltName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Lyrics" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="IsHidden" Type="bit" Nullable="false" />
+          <Property Name="IsFavorite" Type="bit" Nullable="false" />
+          <Property Name="DateAdded" Type="date" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Temp" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_Songs_Artists">
+          <End Role="Artists" Type="KBookData.Store.Artists" Multiplicity="1" />
+          <End Role="Songs" Type="KBookData.Store.Songs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artists">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Songs">
+              <PropertyRef Name="ArtistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KBookData" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KbookEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Artists" EntityType="KBookData.Artist" />
+          <EntitySet Name="Sets" EntityType="KBookData.Set" />
+          <EntitySet Name="Songs" EntityType="KBookData.Song" />
+          <AssociationSet Name="FK_Songs_Artists" Association="KBookData.FK_Songs_Artists">
+            <End Role="Artists" EntitySet="Artists" />
+            <End Role="Songs" EntitySet="Songs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="AltName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Temp" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Songs" Relationship="KBookData.FK_Songs_Artists" FromRole="Artists" ToRole="Songs" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="AltName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Temp" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Song">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ArtistId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="AltName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Lyrics" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Temp" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Artist" Relationship="KBookData.FK_Songs_Artists" FromRole="Songs" ToRole="Artists" />
+          <Property Type="Boolean" Name="IsHidden" Nullable="false" />
+          <Property Type="Boolean" Name="IsFavorite" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Songs_Artists">
+          <End Role="Artists" Type="KBookData.Artist" Multiplicity="1" />
+          <End Role="Songs" Type="KBookData.Song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artists">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Songs">
+              <PropertyRef Name="ArtistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KBookDataStoreContainer" CdmEntityContainer="KbookEntities">
+          <EntitySetMapping Name="Artists">
+            <EntityTypeMapping TypeName="KBookData.Artist">
+              <MappingFragment StoreEntitySet="Artists">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AltName" ColumnName="AltName" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Temp" ColumnName="Temp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sets">
+            <EntityTypeMapping TypeName="KBookData.Set">
+              <MappingFragment StoreEntitySet="Sets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AltName" ColumnName="AltName" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Temp" ColumnName="Temp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Songs">
+            <EntityTypeMapping TypeName="KBookData.Song">
+              <MappingFragment StoreEntitySet="Songs">
+                <ScalarProperty Name="IsFavorite" ColumnName="IsFavorite" />
+                <ScalarProperty Name="IsHidden" ColumnName="IsHidden" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AltName" ColumnName="AltName" />
+                <ScalarProperty Name="Lyrics" ColumnName="Lyrics" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Temp" ColumnName="Temp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
